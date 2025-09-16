@@ -78,6 +78,21 @@
       box-sizing: border-box;
     }
 
-    .mapboxgl-popup-content img {
-      height: 100px;
+    .mapboxgl-popup-content {
+      width: 280px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      justify-content: left;
+      text-align: center;
+      padding: 10px 12px;
+    }
+    
+    .popup-logo {
+      max-width: 105px;
+      max-height: 80px;
+      margin-bottom: 12px;
+      margin-left: auto;
+      margin-right: auto;
     }
