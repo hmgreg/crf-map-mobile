@@ -124,8 +124,22 @@
           <p><a href="${biz.website}" target="_blank">Website</a></p>
           ${biz.memberUrl ? `<p><a href="${biz.memberUrl}" target="_blank">View Profile</a></p>` : ''}
         `;
+
+        // Get the map container height
+        const mapHeight = map.getContainer().clientHeight;
+        
         div.onclick = () => {
-          map.flyTo({ center: biz.coords, zoom: 10 });
+          map.flyTo({
+            center: biz.coords,
+            zoom: 5,
+            essential: true,
+            padding: {
+              top: 0,
+              bottom: mapHeight * 0.5,  // Push the point up by ~50% of map height
+              left: 0,
+              right: 0
+            }
+          });
         };
         sidebar.appendChild(div);
         
@@ -142,11 +156,11 @@
           .setLngLat(biz.coords)
           .setPopup(new mapboxgl.Popup().setHTML(`
             <img class="popup-logo" src="./logo/${biz.logo}"><br>
-            <strong>${biz.name}</strong><br>
-            ${biz.address}<br>
-            <a class="popup-link" href="mailto:${biz.email}">${biz.email}</a><br>
-             ${biz.memberUrl ? `<a class="popup-link" href="${biz.memberUrl}" target="_blank">View Member Profile</a><br>` : ""}
-            <a class="popup-link" href="${biz.website}" target="_blank">${biz.website}</a><br>
+            <strong>${biz.name}</strong>
+            ${biz.address}
+            <a class="popup-link" href="mailto:${biz.email}">${biz.email}</a>
+             ${biz.memberUrl ? `<a class="popup-link" href="${biz.memberUrl}" target="_blank">View Member Profile</a>` : ""}
+            <a class="popup-link" href="${biz.website}" target="_blank">${biz.website}</a>
             Phone: ${biz.phone}
           `))
           .addTo(map);
