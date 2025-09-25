@@ -96,3 +96,6 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .popup-link:focus {
+      outline: none;
+    }
